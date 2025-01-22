@@ -113,7 +113,7 @@ async function run(): Promise<void> {
         }
 
         if (printOutput) {
-            console.log(textResults(total))
+            console.log(textSummary(total))
 
             if (show) {
                 console.log(textResults(total, show))
