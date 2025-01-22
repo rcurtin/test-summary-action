@@ -5,12 +5,15 @@ import * as glob from "glob-promise"
 
 import { TestResult, TestStatus, parseFile } from "./test_parser"
 import { dashboardResults, dashboardSummary } from "./dashboard"
+import { textResults } from "./text"
 
 async function run(): Promise<void> {
     try {
         const pathGlobs = core.getInput("paths", { required: true })
         const outputFile = core.getInput("output") || process.env.GITHUB_STEP_SUMMARY || "-"
         const showList = core.getInput("show")
+        const failOnFailure = core.getInput("fail_job")
+        const printOutput = core.getInput("print_output")
 
         /*
          * Given paths may either be an individual path (eg "foo.xml"),
@@ -109,10 +112,22 @@ async function run(): Promise<void> {
             await writefile(outputFile, output)
         }
 
+        if (printOutput) {
+            console.log(textResults(total))
+
+            if (show) {
+                console.log(textResults(total, show))
+            }
+        }
+
         core.setOutput('passed', total.counts.passed)
         core.setOutput('failed', total.counts.failed)
         core.setOutput('skipped', total.counts.skipped)
         core.setOutput('total', total.counts.passed + total.counts.failed + total.counts.skipped)
+
+        if (failOnFailure) {
+            core.setFailed(total.counts.failed + ' of ' + (total.counts.passed + total.counts.failed + total.counts.skipped) + ' tests failed.')
+        }
     } catch (error) {
         if (error instanceof Error) {
             core.setFailed(error.message)
