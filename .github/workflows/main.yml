@@ -76,8 +76,8 @@ jobs:
       - name: Publish action
         run: |
           git add --verbose .
-          git config user.name 'Edward Thomson'
-          git config user.email 'ethomson@edwardthomson.com'
+          git config user.name 'Ryan Curtin'
+          git config user.email 'ryan@ratml.org'
           git commit -m 'Update from CI' --allow-empty
           git push origin dist
         if: steps.status.outputs.has_changes == '1'

@@ -9,6 +9,10 @@ inputs:
     description: File to write with rendered output
   show:
     description: Types of tests to show in the results table
+  fail_job:
+    description: Fail the job if any tests failed
+  print_output:
+    description: Print the test summary output to the console too
 runs:
   using: 'node20'
   main: 'index.js'
