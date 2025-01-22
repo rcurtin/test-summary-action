@@ -39,20 +39,29 @@ export function textResults(result: TestResult, show: number): string {
 
             text += "\n\n"
 
-            if (testcase.message || testcase.details) {
-                text += "------ Message:\n\n"
-
-                if (testcase.message) {
-                    text += testcase.message
-                }
-
-                if (testcase.details) {
-                    text += "------ Details:\n\n"
-                    text += testcase.details
-                }
+            if (testcase.message) {
+                text += "------ Message: '"
+                text += testcase.message
+                text += "' ------\n\n";
             }
 
-            text += "\n"
+            if (testcase.details) {
+                text += "------ Details:\n"
+                text += testcase.details
+                text += "------\n"
+            }
+
+            if (testcase.stdout) {
+                text += "------ stdout log:\n"
+                text += testcase.stdout
+                text += "------\n";
+            }
+
+            if (testcase.stderr) {
+                text += "------ stderr log:\n"
+                text += testcase.stderr
+                text += "------\n";
+            }
 
             count++
         }
