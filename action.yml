@@ -12,7 +12,7 @@ inputs:
   fail_job:
     description: Fail the job if any tests failed
   print_output:
-    description: Print the test summary output to the console too
+    description: Print the test summary output to the console
 runs:
   using: 'node20'
   main: 'index.js'
