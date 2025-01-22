@@ -519,6 +519,8 @@ function parseJunitXml(xml) {
                 let failure_or_error;
                 let message = undefined;
                 let details = undefined;
+                let stdout = undefined;
+                let stderr = undefined;
                 if (testcase.skipped) {
                     status = TestStatus.Skip;
                     counts.skipped++;
@@ -538,12 +540,20 @@ function parseJunitXml(xml) {
                 else {
                     counts.passed++;
                 }
+                if (testcase.stdout) {
+                    stdout = testcase.stdout;
+                }
+                if (testcase.stderr) {
+                    stderr = testcase.stderr;
+                }
                 cases.push({
                     status: status,
                     name: name,
                     description: classname,
                     message: message,
                     details: details,
+                    stdout: stdout,
+                    stderr: stderr,
                     duration: duration
                 });
             }
@@ -642,17 +652,26 @@ function textResults(result, show) {
                 text += testcase.description;
             }
             text += "\n\n";
-            if (testcase.message || testcase.details) {
-                text += "------ Message:\n\n";
-                if (testcase.message) {
-                    text += testcase.message;
-                }
-                if (testcase.details) {
-                    text += "------ Details:\n\n";
-                    text += testcase.details;
-                }
+            if (testcase.message) {
+                text += "------ Message: '";
+                text += testcase.message;
+                text += "' ------\n\n";
             }
-            text += "\n";
+            if (testcase.details) {
+                text += "------ Details:\n";
+                text += testcase.details;
+                text += "------\n";
+            }
+            if (testcase.stdout) {
+                text += "------ stdout log:\n";
+                text += testcase.stdout;
+                text += "------\n";
+            }
+            if (testcase.stderr) {
+                text += "------ stderr log:\n";
+                text += testcase.stderr;
+                text += "------\n";
+            }
             count++;
         }
     }
