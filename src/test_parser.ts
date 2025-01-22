@@ -36,6 +36,8 @@ export interface TestCase {
     description?: string
     message?: string
     details?: string
+    stdout?: string
+    stderr?: string
     duration?: string
 }
 
