@@ -5,7 +5,7 @@ import * as glob from "glob-promise"
 
 import { TestResult, TestStatus, parseFile } from "./test_parser"
 import { dashboardResults, dashboardSummary } from "./dashboard"
-import { textResults } from "./text"
+import { textResults, textSummary } from "./text"
 
 async function run(): Promise<void> {
     try {
