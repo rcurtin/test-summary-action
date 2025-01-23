@@ -55,7 +55,7 @@ export function dashboardResults(result: TestResult, show: number): string {
                 table += escapeHTML(testcase.description)
             }
 
-            if (testcase.message || testcase.details) {
+            if (testcase.message || testcase.details || testcase.stdout || testcase.stderr) {
                 table += "<br/>\n"
 
                 if (testcase.message) {
@@ -65,10 +65,20 @@ export function dashboardResults(result: TestResult, show: number): string {
                 }
 
                 if (testcase.details) {
-                    // The extra newline is so that the message and details get
-                    // rendered as separate blocks.
-                    table += "<br/><pre><code>"
+                    table += "<br/>Details:<br/><pre><code>"
                     table += escapeHTML(testcase.details)
+                    table += "</code></pre>"
+                }
+
+                if (testcase.stdout) {
+                    table += "<br/>stdout:<br/><pre><code>"
+                    table += escapeHTML(testcase.stdout)
+                    table += "</code></pre>"
+                }
+
+                if (testcase.stderr) {
+                    table += "<br/>stderr:<br/><pre><code>"
+                    table += escapeHTML(testcase.stderr)
                     table += "</code></pre>"
                 }
             }
