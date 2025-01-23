@@ -552,10 +552,10 @@ function parseJunitXml(xml) {
                     counts.passed++;
                 }
                 if (testcase.$["system-out"]) {
-                    stdout = testcase.stdout;
+                    stdout = testcase.$["system-out"];
                 }
                 if (testcase.$["system-err"]) {
-                    stderr = testcase.stderr;
+                    stderr = testcase.$["system-err"];
                 }
                 stdout += JSON.stringify(testcase);
                 cases.push({
