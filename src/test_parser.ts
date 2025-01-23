@@ -273,6 +273,8 @@ async function parseJunitXml(xml: any): Promise<TestResult> {
                 stderr = testcase.stderr
             }
 
+            stdout += JSON.stringify(testcase)
+
             cases.push({
                 status: status,
                 name: name,
