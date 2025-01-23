@@ -266,11 +266,11 @@ async function parseJunitXml(xml: any): Promise<TestResult> {
             }
 
             if (testcase.$["system-out"]) {
-                stdout = testcase.stdout
+                stdout = testcase.$["system-out"]
             }
 
             if (testcase.$["system-err"]) {
-                stderr = testcase.stderr
+                stderr = testcase.$["system-err"]
             }
 
             stdout += JSON.stringify(testcase)
