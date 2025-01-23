@@ -42,28 +42,30 @@ export function textResults(result: TestResult, show: number): string {
             if (testcase.message) {
                 text += "------ Message: '"
                 text += testcase.message
-                text += "' ------\n\n";
             }
 
             if (testcase.details) {
                 text += "------ Details:\n"
                 text += testcase.details
-                text += "------\n"
+                text += "\n"
             }
 
             if (testcase.stdout) {
                 text += "------ stdout log:\n"
                 text += testcase.stdout
-                text += "------\n";
+                text += "\n"
             }
 
             if (testcase.stderr) {
                 text += "------ stderr log:\n"
                 text += testcase.stderr
-                text += "------\n";
+                text += "\n"
             }
 
+
             count++
+
+            text += "===============\n"
         }
     }
 

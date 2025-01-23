@@ -3,7 +3,8 @@ const lookup: Record<string, string> = {
     '"': "&quot;",
     "'": "&apos;",
     "<": "&lt;",
-    ">": "&gt;"
+    ">": "&gt;",
+    " ": "&nbsp;"
 }
 
 export default function escapeHTML(s: string): string {
