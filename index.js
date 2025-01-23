@@ -69,12 +69,12 @@ function dashboardResults(result, show) {
                 }
                 if (testcase.stdout) {
                     table += "<br/>stdout:<br/><pre><code>";
-                    table += (0, escape_html_1.default)(testcase.stdout);
+                    table += testcase.stdout;
                     table += "</code></pre>";
                 }
                 if (testcase.stderr) {
                     table += "<br/>stderr:<br/><pre><code>";
-                    table += (0, escape_html_1.default)(testcase.stderr);
+                    table += testcase.stderr;
                     table += "</code></pre>";
                 }
             }
@@ -552,10 +552,20 @@ function parseJunitXml(xml) {
                     counts.passed++;
                 }
                 if (testcase["system-out"]) {
-                    stdout = testcase["system-out"];
+                    if (typeof (testcase["system-out"]) === "string") {
+                        stdout = testcase["system-out"];
+                    }
+                    else {
+                        stdout = testcase["system-out"]._;
+                    }
                 }
                 if (testcase["system-err"]) {
-                    stderr = testcase["system-err"];
+                    if (typeof (testcase["system-err"]) === "string") {
+                        stderr = testcase["system-err"];
+                    }
+                    else {
+                        stderr = testcase["system-err"]._;
+                    }
                 }
                 cases.push({
                     status: status,
