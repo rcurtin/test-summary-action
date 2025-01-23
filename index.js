@@ -63,9 +63,9 @@ function dashboardResults(result, show) {
                     table += "</code></pre>";
                 }
                 if (testcase.details) {
-                    // The extra space is so that the message and details get
+                    // The extra newline is so that the message and details get
                     // rendered as separate blocks.
-                    table += "&nbsp;<pre><code>";
+                    table += "<br/><pre><code>";
                     table += (0, escape_html_1.default)(testcase.details);
                     table += "</code></pre>";
                 }
@@ -543,10 +543,10 @@ function parseJunitXml(xml) {
                 else {
                     counts.passed++;
                 }
-                if (testcase.stdout) {
+                if (testcase.$["system-out"]) {
                     stdout = testcase.stdout;
                 }
-                if (testcase.stderr) {
+                if (testcase.$["system-err"]) {
                     stderr = testcase.stderr;
                 }
                 cases.push({
@@ -658,6 +658,7 @@ function textResults(result, show) {
             if (testcase.message) {
                 text += "------ Message: '";
                 text += testcase.message;
+                text += "'\n";
             }
             if (testcase.details) {
                 text += "------ Details:\n";
