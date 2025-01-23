@@ -65,9 +65,9 @@ export function dashboardResults(result: TestResult, show: number): string {
                 }
 
                 if (testcase.details) {
-                    // The extra space is so that the message and details get
+                    // The extra newline is so that the message and details get
                     // rendered as separate blocks.
-                    table += "&nbsp;<pre><code>"
+                    table += "<br/><pre><code>"
                     table += escapeHTML(testcase.details)
                     table += "</code></pre>"
                 }

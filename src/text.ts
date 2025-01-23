@@ -42,6 +42,7 @@ export function textResults(result: TestResult, show: number): string {
             if (testcase.message) {
                 text += "------ Message: '"
                 text += testcase.message
+                text += "'\n"
             }
 
             if (testcase.details) {

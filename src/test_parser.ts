@@ -130,7 +130,7 @@ export async function parseTap(data: string): Promise<TestResult> {
             counts.failed++
         } else if (line.match(/^Bail out\!/)) {
             const message = (line.match(/^Bail out\!(.*)/))
-            
+
             if (message) {
                 exception = message[1].trim()
             }
@@ -265,11 +265,11 @@ async function parseJunitXml(xml: any): Promise<TestResult> {
                 counts.passed++
             }
 
-            if (testcase.stdout) {
+            if (testcase.$["system-out"]) {
                 stdout = testcase.stdout
             }
 
-            if (testcase.stderr) {
+            if (testcase.$["system-err"]) {
                 stderr = testcase.stderr
             }
 
