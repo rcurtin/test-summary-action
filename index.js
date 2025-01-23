@@ -55,7 +55,7 @@ function dashboardResults(result, show) {
                 table += ": ";
                 table += (0, escape_html_1.default)(testcase.description);
             }
-            if (testcase.message || testcase.details) {
+            if (testcase.message || testcase.details || testcase.stdout || testcase.stderr) {
                 table += "<br/>\n";
                 if (testcase.message) {
                     table += "<pre><code>";
@@ -63,10 +63,18 @@ function dashboardResults(result, show) {
                     table += "</code></pre>";
                 }
                 if (testcase.details) {
-                    // The extra newline is so that the message and details get
-                    // rendered as separate blocks.
-                    table += "<br/><pre><code>";
+                    table += "<br/>Details:<br/><pre><code>";
                     table += (0, escape_html_1.default)(testcase.details);
+                    table += "</code></pre>";
+                }
+                if (testcase.stdout) {
+                    table += "<br/>stdout:<br/><pre><code>";
+                    table += (0, escape_html_1.default)(testcase.stdout);
+                    table += "</code></pre>";
+                }
+                if (testcase.stderr) {
+                    table += "<br/>stderr:<br/><pre><code>";
+                    table += (0, escape_html_1.default)(testcase.stderr);
                     table += "</code></pre>";
                 }
             }
