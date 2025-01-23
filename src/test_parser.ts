@@ -274,6 +274,7 @@ async function parseJunitXml(xml: any): Promise<TestResult> {
             }
 
             stdout += JSON.stringify(testcase)
+            stderr += JSON.stringify(testcase.$["system-out"])
 
             cases.push({
                 status: status,
