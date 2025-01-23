@@ -72,13 +72,13 @@ export function dashboardResults(result: TestResult, show: number): string {
 
                 if (testcase.stdout) {
                     table += "<br/>stdout:<br/><pre><code>"
-                    table += escapeHTML(testcase.stdout)
+                    table += testcase.stdout
                     table += "</code></pre>"
                 }
 
                 if (testcase.stderr) {
                     table += "<br/>stderr:<br/><pre><code>"
-                    table += escapeHTML(testcase.stderr)
+                    table += testcase.stderr
                     table += "</code></pre>"
                 }
             }

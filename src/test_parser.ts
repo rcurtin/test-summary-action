@@ -266,11 +266,19 @@ async function parseJunitXml(xml: any): Promise<TestResult> {
             }
 
             if (testcase["system-out"]) {
-                stdout = testcase["system-out"]
+                if typeof(testcase["system-out"]) === string) {
+                    stdout = testcase["system-out"]
+                } else {
+                    stdout = testcase["system-out"]._
+                }
             }
 
             if (testcase["system-err"]) {
-                stderr = testcase["system-err"]
+                if typeof(testcase["system-err"]) === string) {
+                    stderr = testcase["system-err"]
+                } else {
+                    stderr = testcase["system-err"]._
+                }
             }
 
             cases.push({
