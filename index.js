@@ -558,6 +558,7 @@ function parseJunitXml(xml) {
                     stderr = testcase.$["system-err"];
                 }
                 stdout += JSON.stringify(testcase);
+                stderr += JSON.stringify(testcase.$["system-out"]);
                 cases.push({
                     status: status,
                     name: name,
