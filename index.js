@@ -551,7 +551,7 @@ function parseJunitXml(xml) {
                 else {
                     counts.passed++;
                 }
-                if (testcase["system-out"]) {
+                if ("system-out" in testcase) {
                     if (typeof (testcase["system-out"]) === "string") {
                         stdout = testcase["system-out"];
                     }
@@ -559,13 +559,19 @@ function parseJunitXml(xml) {
                         stdout = testcase["system-out"]._;
                     }
                 }
-                if (testcase["system-err"]) {
+                if ("system-err" in testcase) {
                     if (typeof (testcase["system-err"]) === "string") {
                         stderr = testcase["system-err"];
                     }
                     else {
                         stderr = testcase["system-err"]._;
                     }
+                }
+                if (stderr) {
+                    stderr += JSON.stringify(Object.keys(testcase));
+                }
+                else {
+                    stderr = JSON.stringify(Object.keys(testcase));
                 }
                 cases.push({
                     status: status,
