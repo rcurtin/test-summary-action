@@ -265,7 +265,7 @@ async function parseJunitXml(xml: any): Promise<TestResult> {
                 counts.passed++
             }
 
-            if (testcase["system-out"]) {
+            if ("system-out" in testcase) {
                 if (typeof(testcase["system-out"]) === "string") {
                     stdout = testcase["system-out"]
                 } else {
@@ -273,7 +273,7 @@ async function parseJunitXml(xml: any): Promise<TestResult> {
                 }
             }
 
-            if (testcase["system-err"]) {
+            if ("system-err" in testcase) {
                 if (typeof(testcase["system-err"]) === "string") {
                     stderr = testcase["system-err"]
                 } else {
