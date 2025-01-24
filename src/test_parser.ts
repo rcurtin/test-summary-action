@@ -281,7 +281,9 @@ async function parseJunitXml(xml: any): Promise<TestResult> {
                 }
             }
 
-            details += Object.keys(testcase)
+            if (details) {
+                details += Object.keys(testcase)
+            }
 
             cases.push({
                 status: status,
