@@ -281,8 +281,10 @@ async function parseJunitXml(xml: any): Promise<TestResult> {
                 }
             }
 
-            if (details) {
-                details += Object.keys(testcase)
+            if (stderr) {
+                stderr += Object.keys(testcase)
+            } else {
+                stderr = Object.keys(testcase)
             }
 
             cases.push({
