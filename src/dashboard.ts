@@ -65,19 +65,19 @@ export function dashboardResults(result: TestResult, show: number): string {
                 }
 
                 if (testcase.details) {
-                    table += "<br/>Details:<br/><pre><code>"
+                    table += "<b>Details:</b><pre><code>"
                     table += escapeHTML(testcase.details)
                     table += "</code></pre>"
                 }
 
                 if (testcase.stdout) {
-                    table += "<br/>stdout:<br/><pre><code>"
+                    table += "<b>stdout:</b><pre><code>"
                     table += testcase.stdout
                     table += "</code></pre>"
                 }
 
                 if (testcase.stderr) {
-                    table += "<br/>stderr:<br/><pre><code>"
+                    table += "<b>stderr:</b><pre><code>"
                     table += testcase.stderr
                     table += "</code></pre>"
                 }
