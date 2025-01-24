@@ -281,7 +281,7 @@ function run() {
             core.setOutput('failed', total.counts.failed);
             core.setOutput('skipped', total.counts.skipped);
             core.setOutput('total', total.counts.passed + total.counts.failed + total.counts.skipped);
-            if (failOnFailure) {
+            if (failOnFailure && total.counts.failed > 0) {
                 core.setFailed(total.counts.failed + ' of ' + (total.counts.passed + total.counts.failed + total.counts.skipped) + ' tests failed.');
             }
         }
